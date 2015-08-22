@@ -12,23 +12,19 @@ function ListNode(val) {
  */
 var reverseList = function(head) {
   if (!head) return head;
-  var currentNode = head;
-  var nodes = [];
+  var newTail = head;
+  var newHead = head.next;
+  newTail.next = null;
 
-  while (currentNode) {
-    nodes.push(currentNode);
-    currentNode = currentNode.next;
+  while (newHead) {
+    secondNode = newHead.next;
+    newHead.next = newTail;
+
+    newTail = newHead;
+    newHead = secondNode;
   }
 
-  for (var i = nodes.length - 1; i > 0; i--) {
-    var node = nodes[i];
-    var nextNode = nodes[i - 1];
-
-    node.next = nextNode;
-  }
-  nodes[0].next = null;
-
-  return nodes[nodes.length - 1];
+  return newTail;
 };
 
 one = new ListNode(1);
