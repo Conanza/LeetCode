@@ -15,21 +15,17 @@ var twoSum = function(nums, target) {
   var numsSeen = {}, difference;
 
   for (var i = 0, n = nums.length; i < n; i++) {
-    if (numsSeen[nums[i]] === undefined) {
-      numsSeen[nums[i]] = [i];
-    } else {
-      numsSeen[nums[i]].push(i);
-    }
     difference = target - nums[i];
 
     if (numsSeen[difference] !== undefined) {
-      if (numsSeen[difference][0] !== i) {
-        return [numsSeen[difference][0] + 1, i + 1];
-      }
+      return [numsSeen[difference] + 1, i + 1];
     }
+
+    numsSeen[nums[i]] = i;
   }
 };
 
 console.log(twoSum([2, 7, 11, 15], 9));
 console.log(twoSum([3, 2, 4], 6));
 console.log(twoSum([3, 2, 6, 4, 6], 12));
+console.log(twoSum([1, 2, 0, 4, 6], 2));
